@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- <script type="text/javascript" src="jquery-1.2.1.js"></script> -->
+    <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+        'use strict';
+
+        var xiaoming = {
+            name: '小明',
+            age: 14,
+            gender: true,
+            height: 1.65,
+            grade: null,
+            'middle-school': '\"W3C\" Middle School',
+            skills: ['JavaScript', 'Java', 'Python', 'Lisp']
+        };
+        var s = JSON.stringify(xiaoming, null, "   ");
+        console.log(s);
+
+        if (Date.now) {
+            var now = new Date();
+            console.log(now.getFullYear()+"-"+now.getMonth()+1+"-"+now.getDate());
+        } else {
+            var now = new Date();
+            console.log(now.getFullYear()+"-"+now.getMonth()+"-"+now.getDate());
+            // now.getFullYear(); // 2015, 年份
+            // now.getMonth(); // 5, 月份，注意月份范围是0~11，5表示六月
+            // now.getDate(); // 24, 表示24号
+            // now.getDay(); // 3, 表示星期三
+            // now.getHours(); // 19, 24小时制
+            // now.getMinutes(); // 49, 分钟
+            // now.getSeconds(); // 22, 秒
+            // now.getMilliseconds(); // 875, 毫秒数
+            // now.getTime(); // 1435146562875, 以number形式表示的时间戳
+        }
+        var url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20%3D%202151330&format=json';
+        console.log(url);
+        
+            // // 从远程地址获取JSON:
+            // $.getJSON(url, function (data) {
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="btn" onclick="getText()">获取数据</div>
+        <div class="text"></div>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+
+    function getText(){
+        $(".text").load("http:127.0.0.1:8080");
+        console.log('get data...')
+    }
+
+</script>
+
+</html>

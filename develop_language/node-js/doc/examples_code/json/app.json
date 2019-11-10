@@ -1,0 +1,10 @@
+{
+"server": "104.128.95.11",
+"server_port": 443,
+"local_address" : "127.0.0.1",
+"localPort": 1080,
+"password": "MTc5NjJkNj",
+"timeout": 600,
+"method": "aes-256-cfb",
+"fast_open": false
+}
