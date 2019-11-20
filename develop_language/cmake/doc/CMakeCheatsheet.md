@@ -495,6 +495,22 @@ ENDIF(NOT libX)
 
 详细介绍请参考: [cmake FIND_xxx 指令详解](/dev_tools/cmake/doc/FILE_command.md).  
 
+### (20) CMake 创建项目分组   
+
+```cmake
+SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
+SET_PROPERTY(TARGET project1 PROPERTY FOLDER "Core")
+SET_PROPERTY(TARGET project2 PROPERTY FOLDER "Core")
+```
+
+### (21) 工程文件分组 - source_group() 
+
+```cmake
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} PREFIX src FILES ${EXECUTABLE}.cpp)
+add_executable (${EXECUTABLE} ${EXECUTABLE}.cpp)
+```
+
+一定要在 add_executable() 中加入需要归类分组的文件列表, 否则不会显示.  
 
 ## 关于语法的疑惑
 
