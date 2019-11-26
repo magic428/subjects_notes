@@ -3,6 +3,8 @@
 - PCL 不同类型的点云之间进行类型转换  
 - PCL 使用 Index 从给定的的点云簇中提取子点云簇  
 
+> XYZ 颜色: X 红色, Y 绿色, Z 蓝色.  
+
 ## PCL 不同类型的点云之间进行类型转换  
 
 可以使用 PCL 里面现成的函数 pcl::copyPointCloud() 或者手动转换.   
@@ -430,6 +432,53 @@ void viewerOneOff(boost::shared_ptr<pcl::visualization::PCLVisualizer>& viewer)
 }
 ```
 
+## 如何在某个指定点的固定半径长度邻域内搜索点  
+
+核心方法是: kdtree.radiusSearch(). 通过指定基准点和需要搜索的半径, 就可以得到搜索结果.  
+
+```cpp
+int main()
+{
+    // Search the neighbors in the range with radius
+    pcl::KdTreeFLANN<PointT> kdtree;
+    kdtree.setInputCloud (cloudIn);
+
+    // Neighbors within radius search
+    std::vector<int> pointIdxRadiusSearch;
+    std::vector<float> pointRadiusSquaredDistance;
+    float radius = 0.2;
+
+    // set the searchPoint with the picked point
+    PointT searchPoint;
+    searchPoint.x = picked_point_coord[0];
+    searchPoint.y = picked_point_coord[1];
+    searchPoint.z = picked_point_coord[2];
+
+    LOG(DEBUG) << "Neighbors within radius search at (" << searchPoint.x
+                    << " " << searchPoint.y
+                    << " " << searchPoint.z
+                    << ") with radius=" << radius;
+
+    if(kdtree.radiusSearch (searchPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) > 0) {
+
+        // color each cluster
+        int r = rand() % 156;
+        int g = rand() % 186;
+        int b = rand() % 256;
+
+        for (int j = 0; j < pointIdxRadiusSearch.size(); j++)
+        {
+            cloudIn->points[pointIdxRadiusSearch[j]].r = r;
+            cloudIn->points[pointIdxRadiusSearch[j]].g = g;
+            cloudIn->points[pointIdxRadiusSearch[j]].b = b;
+        }
+    } else {
+        return 0;
+    }
+
+    LOG(DEBUG) << "Search Result: " << pointIdxRadiusSearch.size() << " neighbor points.";
+}
+```
 
 ## 参考资料 
 
