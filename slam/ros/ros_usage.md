@@ -1,7 +1,7 @@
 # ROS 用法
 
-Package:软件包
-Manifest：package.xml：软件包的相关信息。
+Package: 软件包  
+Manifest: package.xml: 软件包的相关信息。  
 
 ## rostopic - rosmsg
 
@@ -48,7 +48,9 @@ rosparam load file_name
 
 
 ## 3 如何创建一个ROS包
-	功能模块。可完成一个简单的功能。
+
+功能模块。可完成一个简单的功能。  
+
 roscreate-pkg catkin.
 
 The package must contain a catkin compliant package.xml file.

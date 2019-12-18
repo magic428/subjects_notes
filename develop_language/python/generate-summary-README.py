@@ -20,7 +20,7 @@ def get_file_title(file_path):
 if __name__ == "__main__":    
     # this folder is custom 
     i = 0
-    rootdir=u"D:/workSpace/work/gitwork/work_note"
+    rootdir=u"/home/magic/work/gitwork/work_note/ubuntu_os_usage"
 
     level_1_folers = os.listdir(rootdir)
     for level_1_foler in level_1_folers:
