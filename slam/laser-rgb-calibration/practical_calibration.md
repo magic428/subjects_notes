@@ -69,6 +69,12 @@ topics:      /sensors/camera/camera_info 2500 msgs: sensor_msgs/CameraInfo
 rosrun image_view image_view image:=/sensors/camera/image_color
 ```
 
+## 初始化 Autoware-Ros 环境  
+
+```bash
+source install/setup.bash
+```
+
 ## 开始标定相机  
 
 在联合标定雷达和相机之前需要先标定相机的内参. 下载好的 rosbag 数据中同时包含了相机数据和雷达点云数据, 使用下面的命令开始标定相机:   
