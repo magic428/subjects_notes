@@ -223,6 +223,7 @@ rosrun points2image points2image _points_node:=/sensors/velodyne_points
 ```bash
 roslaunch runtime_manager runtime_manager.launch
 ```
+
 启动 autoware runtime_manager, 执行完毕后，打开 rviz，选择 Panels –> Add New Panel –> ImageViewerPlugin，然后在新窗口中设置 Image Topic 为 /sensors/camera/image_color, 设置 Point Topic 为 /points_image.  
 
 同时可以发布和对齐 LiDAR 与相机之间的转换.  
