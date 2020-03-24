@@ -45,7 +45,7 @@ int main(int argc, char** argv) try
     
     while(1)
     {
-        frames = pipe.wait_for_frames();//等待所有配置的流生成框架
+        frames = pipe.wait_for_frames();//等待所有配置的流生成帧数据
 
         // Align to depth - 将深度图数据和RGB图进行对齐
         rs2::align align_to_depth(RS2_STREAM_DEPTH);

@@ -1,4 +1,6 @@
-# rs-imu-calibration Tool:
+# rs-imu-calibration Tool 
+
+这种标定方法只适用于商用化的简单标定, 在 SLAM 应用中无法满足精度要求.  
 
 https://github.com/IntelRealSense/librealsense/tree/development/tools/rs-imu-calibration#rs-imu-calibration-tool
 
@@ -84,3 +86,36 @@ I cut a little piece so the cord may come out, and that's it:<br>
 
 ***upside down (or upright) facing out:***<br>
 ![upside down facing out](images/IMG_4924.JPG)
+
+
+
+## Issues   
+
+**1\) 一直打印: Status.collect_dataWARNING: MOVING**  
+
+When I run the program python3 rs-imu-calibration.py in the first position according to the instructions, the program keeps repeating WARNING: MOVING and Status.wait_to_stable, but cannot perform calibration.as follow,
+
+```bash
+$ python3 rs-imu-calibration.py
+Start interactive mode:
+FOUND GYRO with fps=200
+FOUND ACCEL with fps=63
+*** Press ESC to Quit ***
+Align to direction: [ 0. -1. 0.] Upright facing out
+Status.rotate: [-0.0031 -0.0023 -0.0681]: [ True T Status.collect_dataWARNING: MOVING
+Status.rotate: [-0.0052 -0.0021 -0.064 ]: [ True T Status.collect_dataWARNING: MOVING
+Status.rotate: [-0.0072 -0.0021 -0.064 ]: [ True T Status.collect_dataWARNING: MOVING
+Status.rotate: [-0.0052 -0.0021 -0.0641]: [ True T Status.collect_dataWARNING: MOVING
+Status.rotate: [-0.0052 -0.0019 -0.0619]: [ True T
+```
+
+When printing the gyroscope values in the program, I found the gyroscope The value of the meter has always been kept large, and the gyroscope data cannot be collected, which makes it impossible to calibrate. How to solve this problem?
+
+collect gyroscope values code as follow:
+if pr.stream_type() == rs.stream.gyro:
+self.collected_data_gyro.append(np.append(frame.get_timestamp(), data_np))
+is_moving = any(abs(data_np) > self.rotating_threshold)
+
+gyroscope values is about [ 6.98131695e-03 5.67720680e+01 -2.15338726e+01]
+Please try to uninstall the *pip package-pyrealsense2* and try to install with librealsense source code. Do not use pip install pyrealsense2 to install python programs.
+

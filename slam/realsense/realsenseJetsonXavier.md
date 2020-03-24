@@ -68,3 +68,9 @@ Changing the version of librealsense in the buildPatchedKernel.sh script from 2.
 2) 同步问题  
 
 - **enable_sync**: gathers closest frames of different sensors, infra red, color and depth, to be sent with the same timetag. This happens automatically when such filters as pointcloud are enabled.
+
+
+## 参考资料  
+
+[1] 如何用 Realsense D435i 运行 VINS-Mono 等 VIO 算法 获取 IMU 同步数据: https://blog.csdn.net/qq_41839222/article/details/86552367   
+

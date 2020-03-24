@@ -29,3 +29,7 @@ VINS-Mono: https://github.com/HKUST-Aerial-Robotics/VINS-Mono
 KLT: https://cecas.clemson.edu/~stb/klt/   
 FAST: http://www.edwardrosten.com/work/fast.html  
 
+## datasets
+
+https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets  
+

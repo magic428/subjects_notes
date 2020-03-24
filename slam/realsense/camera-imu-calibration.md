@@ -121,10 +121,10 @@ rosbag record -O imu_calibration /camera/imu
 roslaunch imu_utils d435i_imu.launch
 ```
 
-**回放数据包(20 倍回放)**  
+**回放数据包(200 倍回放)**  
 
 ```bash
-rosbag play -r 20 imu_calibration.bag
+rosbag play -r 200 imu_calibration.bag
 ```
 
 经过这些标定会生成一个 yaml 文件和很多 txt 文件, 主要是 yaml 文件, 如下所示给出了加速度计和陀螺仪三轴的 noise_density 和 random_walk,  同时计算出了平均值, 后面 IMU+Camera 联合标定的时候需要这些均值.   
@@ -170,10 +170,10 @@ Acc:
 rostopic: /camera/imu     #the IMU ROS topic
 update_rate: 200.0        #Hz (for discretization of the val
 
-accelerometer_noise_density: 3.6510867135455143e-02 #Noise density (continuous-time)
-accelerometer_random_walk: 8.7794225985338419e-04 #Bias random walk
-gyroscope_noise_density: 1.1110598103547959e-02 #Noise density (continuous-time)
-gyroscope_random_walk: 2.1198529500305598e-04 #Bias random walk
+accelerometer_noise_density: 2.7972858634203440e-02 #Noise density (continuous-time)
+accelerometer_random_walk: 4.9164474715115763e-04 #Bias random walk
+gyroscope_noise_density: 4.6252299865200278e-03 #Noise density (continuous-time)
+gyroscope_random_walk: 6.5747864795302093e-05 #Bias random walk
 ```
 
 ## 四. 使用 Kalibr 标定 realsense D435i Camera   
@@ -316,7 +316,7 @@ rosrun topic_tools throttle messages /camera/imu 200.0 /imu
 RGB 图像频率降至 20 Hz, 新发布的 topic 名字是 /color; 
 IMU 频率降低为 200 Hz, 新发布的 topic 名字是 /imu.  
 
-**运动原则:** 固定标定板目标, 确保摄像头能够提取特征前提下充分调整 d435i 的姿势和位置. 先面对标定目标, 然后俯仰、偏航和横滚三个角度分别面向目标运动, 然后是前后左右和上下运动, 充分运动起来, 推荐时间在 2 min 以上. 录制数据包. 准确的标定动作可参照官网的视频(需要翻墙观看): https://github.com/etHz-asl/kalibr, 基本原则是需要激活 6 个自由度的运动 (xyz 旋转与平移).  
+**运动原则:** 固定标定板目标, 确保摄像头能够提取特征前提下充分调整 d435i 的姿势和位置. 先面对标定目标, 然后俯仰、偏航和横滚三个角度分别面向目标运动, 然后是前后左右和上下运动, 充分运动起来, 推荐时间在 2 min 以上. 录制数据包. 准确的标定动作可参照官网的视频(需要翻墙观看): https://github.com/ethz-asl/kalibr/wiki/camera-imu-calibration, 基本原则是需要激活 6 个自由度的运动 (xyz 旋转与平移).  
 
 使用下面的命令录制 imu_camera_calibration.bag 数据 (同时录制 /imu 与 /color 话题):  
 
