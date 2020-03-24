@@ -64,8 +64,10 @@ eg.
 rosbag filter my.bag only-tf.bag "topic == '/tf'"
 filter by topic
 rosbag filter my.bag out.bag "topic == '/tf' or topic == '/tf2'"
-filter by time
+
+filter by time - 截取特定时间段内的数据  
 rosbag filter my.bag out.bag "t.to_sec() >= 123444.77 and t.to_sec() <= 234545.88"
+
 更多用法
 rosbag filter -h
 回到顶部

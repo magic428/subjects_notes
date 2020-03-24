@@ -1,24 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Issues  
 
 1) Realsense D435i IMU and Camera using different timestamps on NVIDIA Jetson TX2 #3837
